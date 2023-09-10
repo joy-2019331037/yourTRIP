@@ -6,7 +6,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Tours from '../pages/Tours'
 import TourDetails from '../pages/TourDetails'
-import SearchResultList from '../pages/searchResultList'
+import SearchResultList from '../pages/SearchResultList'
 import ThankYou from '../pages/ThankYou'
 
 

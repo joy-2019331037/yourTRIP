@@ -6,6 +6,8 @@ import { Col } from "reactstrap";
 import useFetch from "./../../hooks/useFetch.js";
 import { BASE_URL } from "./../../utils/config.js";
 
+import './featuredtourlist.css'
+
 const FeaturedTourList = () => {
   // console.log('printing from inside fetauredTourList')
   // console.log(BASE_URL)
@@ -18,7 +20,8 @@ const FeaturedTourList = () => {
   return (
     <>
     {
-      loading && <h4>Loading.....</h4>
+      loading && <h4>Loading....</h4>
+      // loading && <span class="loader"></span>
     }
     {
       error && <h4>{error}</h4>

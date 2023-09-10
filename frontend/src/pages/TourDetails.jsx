@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 import { useParams } from "react-router-dom";
 import Newsletter from '../shared/Newsletter'
-import tourData from "../assets/data/tours";
 import CalculateAvgRating from "../utils/calculateAvgRating";
 import Booking from "../components/Booking/Booking";
 
+
+import useFetch from '../hooks/useFetch'
+import {BASE_URL} from '../utils/config'
 import avatar from "../assets/images/avatar.jpg";
 import "../styles/tourdetails.css";
 
@@ -17,9 +19,8 @@ const TourDetails = () => {
   const reviewMsgRef = useRef("");
   const [tourRating, setTourRating] = useState(null);
 
-  //this is currently static data
-  //later we will call API from here, and load data from db
-  const tour = tourData.find((tour) => tour.id === id);
+  //fetch data from db
+  const {data:tour,loading,error} = useFetch(`${BASE_URL}/tours/${id}`)
 
   //destructuring properties from tour object
   const {
@@ -47,10 +48,22 @@ const TourDetails = () => {
     alert(`user says ${reviewText}, rating ${tourRating}`);
   }
 
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[tour])
+
   return (
     <>
       <Container>
-        <Row>
+        {
+          loading && <h4 className="text-center pt-5">Loading....</h4>
+        }
+        {
+          error && <h4 className="text-center pt-5">{error}</h4>
+        }
+        {
+          !loading && ! error && 
+          <Row>
           <Col lg="8">
             <div className="tour__content">
               <img src={photo} alt="" />
@@ -185,6 +198,7 @@ const TourDetails = () => {
             <Booking tour={tour} avgRating={avgRating}/>
           </Col>
         </Row>
+        }
       </Container>
       <Newsletter/>
     </>

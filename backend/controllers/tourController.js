@@ -110,15 +110,16 @@ export const getTourBySearch = async (req, res) => {
   const distance = parseInt(req.query.distance);
   const maxGroupSize = parseInt(req.query.maxGroupSize);
 
+  
   try {
-
+    
     //gte means greater than equal
     const tours = await Tour.find({
       city,
       distance: { $gte: distance },
       maxGroupSize: { $gte: maxGroupSize },
-    },populate('reviews'));
-
+    }).populate('reviews');
+    
     res.status(200).json({
       success: true,
       message: "successfully found out the tour!",
@@ -156,11 +157,12 @@ export const getFeaturedTours = async (req, res) => {
 export const getTourCount = async (req,res)=>{
   try {
     const tourCount  = await Tour.estimatedDocumentCount(); 
-
+    
     res.status(200).json({
       success: true,
-      count: tourCount,
+      data: tourCount,
     });
+   
   } catch (error) {
     res.status(500).json({ success: false, message: "failed to fetch tour count" });
   }

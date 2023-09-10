@@ -30,10 +30,10 @@ const stickyHeaderFunc = ()=>{
   window.addEventListener('scroll',()=>{
     if(document.body.scrollTop>80 || document.documentElement.scrollTop>80){
       headerRef.current.classList.add("sticky__header")
-      console.log('printing from inside')
+      
     }else{
       headerRef.current.classList.remove("sticky__header")
-      console.log('printing from inside 2')
+     
     }
   })
 }
