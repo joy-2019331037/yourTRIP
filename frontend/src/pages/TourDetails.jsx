@@ -31,9 +31,9 @@ const TourDetails =() => {
   };
 
   
-  console.log('star Color : '+starColor);
-  console.log('star Color Limit : '+starColorLimit)
-  console.log('changed Once : '+changedOnce)
+  // console.log('star Color : '+starColor);
+  // console.log('star Color Limit : '+starColorLimit)
+  // console.log('changed Once : '+changedOnce)
   const { id } = useParams();
 
   const reviewMsgRef = useRef("");

@@ -4,6 +4,7 @@ export const createBooking=async (req,res)=>{
     const newBooking = new Booking(req.body)
     try {
         const savedBooking = await newBooking.save()
+        console.log(savedBooking)
         res.status(200).json({
             success:true,
             message:"Your tour is booked",
@@ -14,6 +15,7 @@ export const createBooking=async (req,res)=>{
             success:false,
             message:"failed to book",
         })
+        console.log(error)
     }
 }
 

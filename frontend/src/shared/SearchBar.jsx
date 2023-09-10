@@ -32,7 +32,7 @@ const SearchBar = () => {
             alert('something went wrong')
         }
         const result =await res.json();
-        console.log(result);
+        
         
         navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
         ,{state: result.data})
