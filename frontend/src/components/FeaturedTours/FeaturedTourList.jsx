@@ -1,6 +1,6 @@
 import React from "react";
 import TourCard from "../../shared/TourCard";
-import tourData from "../../assets/data/tours";
+
 import { Col } from "reactstrap";
 
 import useFetch from "./../../hooks/useFetch.js";
@@ -15,7 +15,7 @@ const FeaturedTourList = () => {
     `${BASE_URL}/tours/search/getFeaturedTours`
   );
 
-  console.log(featuredTours);
+ 
 
   return (
     <>

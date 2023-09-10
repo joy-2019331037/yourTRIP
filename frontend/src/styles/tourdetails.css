@@ -78,6 +78,11 @@
     margin-right: 1.5rem;
 }
 
+
+.ri-star-fill.changed{
+    color:var(--secondary-color)
+}
+
 .review__input{
     display: flex;
     align-items: center;
@@ -138,3 +143,4 @@
     font-weight: 500;
 
 }
+

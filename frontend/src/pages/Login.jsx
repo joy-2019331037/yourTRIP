@@ -1,28 +1,55 @@
-import React,{useState} from "react";
+import React, { useState, useContext } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { AuthContext } from "./../context/AuthContext";
+import { BASE_URL } from "../utils/config";
 
 import loginImg from "../assets/images/login.png";
 import userIcon from "../assets/images/user.png";
 import "../styles/login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
+
   const [credentials, setCredentials] = useState({
-    email:undefined,
-    password:undefined
-  }) 
+    email: undefined,
+    password: undefined,
+  });
 
   const handleChange = (e) => {
-    setCredentials((prev)=>({...prev, [e.target.id]:e.target.value}))
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleClick=(e)=>{
+  const handleClick = async (e) => {
     e.preventDefault();
 
-    console.log(credentials);
-   
-  }
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await fetch(`${BASE_URL}/auth/login`,{
+        method:'post',
+        headers:{
+          'content-type':'application/json'
+        },
+        credentials:'include',
+        body:JSON.stringify(credentials)
+      })
+      const result = await res.json()
 
+      if(!res.ok){
+        alert(result.message)
+      }
+
+      console.log(result.data)
+
+      dispatch({type:'LOGIN_SUCCESS',payload:result.data})
+      navigate('/')
+    } catch (error) {
+      dispatch({tyoe:'LOGIN_FAILURE', payload:error.message})
+    }
+  };
 
   return (
     <section>
@@ -62,12 +89,18 @@ const Login = () => {
                     />
                   </FormGroup>
 
-                  <Button className="btn secondary__btn auth__btn" type="submit" onClick={handleClick}>
+                  <Button
+                    className="btn secondary__btn auth__btn"
+                    type="submit"
+                    onClick={handleClick}
+                  >
                     Login
                   </Button>
                 </Form>
 
-                <p>Don't have an account? <Link to='/register'>Create here</Link></p> 
+                <p>
+                  Don't have an account? <Link to="/register">Create here</Link>
+                </p>
               </div>
             </div>
           </Col>

@@ -58,7 +58,7 @@ export const login = async (req, res) => {
 
     //if everything is valid, now user can login
     const { password, role, ...rest } = user._doc;
-
+    
     //create jwt token
     const token = jwt.sign(
       {
@@ -78,7 +78,7 @@ export const login = async (req, res) => {
       .status(200)
       .json({
         token,
-        date: { ...rest },
+        data: { ...rest },
         role,
       });
   } catch (error) {

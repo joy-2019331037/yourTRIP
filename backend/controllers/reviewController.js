@@ -8,7 +8,7 @@ export const createReview=async (req,res)=>{
     try {
         const savedReview = await newReview.save();
 
-
+        
         //after creating a new review, now update the review array of the tour
         await Tour.findByIdAndUpdate(tourId,{
             $push:{reviews:savedReview._id}
@@ -18,8 +18,9 @@ export const createReview=async (req,res)=>{
             message:"successfully submitted review",
             data:savedReview
         })
+       
     } catch (error) {
-        res.status(500),json({
+        res.status(500).json({
             success:false,
             message:"failed to submit review"
         })
