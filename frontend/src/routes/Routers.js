@@ -8,13 +8,14 @@ import Tours from '../pages/Tours'
 import TourDetails from '../pages/TourDetails'
 import SearchResultList from '../pages/SearchResultList'
 import ThankYou from '../pages/ThankYou'
-
+import Profile from '../pages/Profile'
 
 const Routers = () => {
   return (
     <Routes>
         <Route path='/' element={<Navigate to='/home'/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/profile' element={<Profile/>}/>
         <Route path='/thank-you' element={<ThankYou/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>

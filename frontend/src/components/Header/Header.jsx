@@ -24,6 +24,7 @@ const nav_links = [
 
 const Header = () => {
   const headerRef = useRef(null);
+  const menuRef = useRef(null);
   const navigate = useNavigate();
   const { user, dispatch } = useContext(AuthContext);
 
@@ -51,6 +52,8 @@ const Header = () => {
     return window.removeEventListener("scroll", stickyHeaderFunc);
   });
 
+  const toggleMenu=()=> menuRef.current.classList.toggle('show__menu')
+
   return (
     <header className="header" ref={headerRef}>
       <Container>
@@ -63,7 +66,7 @@ const Header = () => {
             {/* ______________ logo finish _______________ */}
 
             {/* ______________ menu starts _______________ */}
-            <div className="navigation">
+            <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <ul className="menu d-flex align-items-center gap-5">
                 {nav_links.map((item, index) => (
                   <li className="nav__item" key={index}>
@@ -85,7 +88,7 @@ const Header = () => {
               <div className="nav__btns d-flex align-items-center gap-4">
                 {user ? (
                   <>
-                    <h5 className="mb-0">{user.username}</h5>
+                    <Link className="profile" to='/profile'><h5>{user.username}</h5></Link>
                     {/* <span><i class="ri-arrow-drop-down-fill"></i></span> */}
                     <Button className="btn primary__btn" onClick={logout}>
                       Logout
@@ -103,7 +106,7 @@ const Header = () => {
                   </>
                 )}
               </div>
-              <span className="mobile__menu">
+              <span className="mobile__menu" onClick={toggleMenu}>
                 <i class="ri-menu-line"></i>
               </span>
             </div>
