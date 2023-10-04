@@ -1,0 +1,72 @@
+.reviewDialog .appbar {
+    background-color: rgb(249, 241, 229);
+    color: black;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.reviewDialog{
+  overflow: hidden;
+}
+.reviewDialog parent{
+  overflow-y: scroll;
+}
+
+.review__item {
+  width: 50rem;
+  padding: 1rem;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  background-color:aliceblue;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .photoDiv img {
+    width: 20rem;
+    height: 10rem;
+    border-radius: 1rem;
+    margin-left: 5rem;
+    margin-right: 7rem;
+  }
+  
+  .tourName{
+    font-size: 1.5rem;
+    color: black;
+  }
+
+  .tourRating{
+    font-size: large;
+    color:var(--secondary-color);
+  }
+  .tourRating label{
+      color: black;
+      margin-right: 0.7rem;
+  }
+  .reviewText {
+    font-size: 1.1rem;
+    font-family: monospace, Geneva, Tahoma, sans-serif;
+    color: var(--tertiary-color);
+    font-weight: 700;
+    text-align: center;
+    &:hover{
+      transition: 0.5s;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+      transform: scale(1.1);
+      background-color: rgb(213, 255, 215);
+      color: black;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+  }
+  /* &:hover{
+   
+    border: 1px solid azure;
+    border-radius: 0.7rem;
+    background-color: aliceblue;
+    
+    box-shadow: 2px 2px 2px 2px rgb(207, 202, 202);
+} */
+}
+

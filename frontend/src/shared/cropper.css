@@ -1,0 +1,11 @@
+input{
+    display: none;
+}
+
+.main{
+    margin-left: 3rem;
+}
+
+.chooseDp{
+   text-align: center;
+}

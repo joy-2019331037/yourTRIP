@@ -1,0 +1,88 @@
+.bookingDialog .appbar {
+    background-color: rgb(249, 241, 229);
+    color: black;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+/* .reviewDialog{
+  overflow: hidden;
+}
+.reviewDialog parent{
+  overflow-y: scroll;
+} */
+
+.booking__item {
+  width: 52rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  background-color:aliceblue;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  
+  .photoDiv img {
+    width: 13rem;
+    height: 10rem;
+    border-radius: 1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+  
+  .reviewText {
+    font-size: 1.1rem;
+    font-family: monospace, Geneva, Tahoma, sans-serif;
+    color: var(--tertiary-color);
+    font-weight: 700;
+    text-align: center;
+    &:hover{
+      transition: 0.5s;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+      transform: scale(1.1);
+      background-color: rgb(213, 255, 215);
+      color: black;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+  }
+}
+.tourName{
+    font-size: 1.2rem;
+    color: black;
+    margin-right: 3rem;
+    .bookAt{
+        margin-top: 9rem;
+        font-size: 1rem;
+
+        .bookAtText{
+          &:hover{
+            transition: 0.5s;
+            /* transform: scale(1.1); */
+            font-weight: 700;
+          }
+        }
+        
+    }
+  }
+.details {
+
+    gap: 0rem;
+    .name{
+        font-size: 1.1rem;
+        color:var(--tertiary-color)
+    }
+    .name{
+      font-weight: 500;
+    }
+    .mail{
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+        #mailText{
+            margin-left: 0.5rem;
+            color: black;
+        }
+    }
+}
