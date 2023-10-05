@@ -1,23 +1,24 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import map, { set } from "lodash";
+
 import { BASE_URL } from "../utils/config";
 import { AuthContext } from "../context/AuthContext";
 
-import userImg from "../assets/images/profile.jpg";
 import "../styles/profile.css";
-import { Dialog } from "primereact/dialog";
 
 import ReviewDialog from "../shared/Dialog";
 import BookingDialog from "../shared/bookingDialog";
 
-import Avatar from "react-avatar-edit";
 import Cropper from "../shared/Cropper";
+
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Profile() {
   const { user } = useContext(AuthContext);
-  
-  
+
+  //format date
+  const options = { day: "numeric", month: "long", year: "numeric" };
+
   const [reviews, setReviews] = useState([
     {
       id: "",
@@ -81,13 +82,11 @@ function Profile() {
           reviewText: review.reviewText,
         }))
       );
-      console.log(reviews);
     } catch (error) {
       console.log(error);
       alert("coming form here " + error.message);
     }
   };
-
 
   const bookingHandler = async (e) => {
     e.preventDefault();
@@ -130,89 +129,42 @@ function Profile() {
           bookAt: booking.bookAt,
         }))
       );
-      console.log(bookings);
     } catch (error) {
       console.log(error);
       alert("coming form here " + error.message);
     }
   };
 
-  //_____________________dp change section_________________________---
-  // const [image, setImage] = useState("");
+  //_______________________profile pic_______________________
 
-  // const [imageCrop, setImageCrop] = useState("");
+  const [DP, setDP] = useState(false);
+  const [image, setImage] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
 
-  // // Create a reference to the hidden file input element
-  // const hiddenFileInput = useRef(null);
+  const getDp = async () => {
+    const response = await fetch(`${BASE_URL}/users/getSingleUser/${user._id}`);
 
-  // // Programatically click the hidden file input element
-  // // when the Button component is clicked
-  // const addDpClicker = (event) => {
-  //   hiddenFileInput.current.click();
-  // };
+    if (!response.ok) {
+      throw new Error("Failed to fetch user data");
+    }
 
-  // const onImageChange = (view) => {
-  //   if (view) {
-  //     setImage(URL.createObjectURL(view));
-  //   }
-  //   console.log(image);
-  // };
+    const userData = await response.json();
+    console.log(userData);
+    //console.log(userData.data.dp);
 
-  // //_____________________Avatar section _________________
+    const blob = await fetch(userData.data.dp).then((res) => res.blob());
 
-  // const [src, setSrc] = useState(null);
-  // const [preview, setPreview] = useState(null);
-
-  // const onClose = () => {
-  //   setImage(preview);
-  //   setBringDialog(false);
-  // };
-
-  // const onCrop = (view) => {
-  //   setPreview(view);
-  // };
-
-  // const [avatarSize, setAvatarSize] = useState({ width: 400, height: 300 });
-
-  // useEffect(() => {
-  //   if (image) {
-  //     const img = new Image();
-  //     img.onload = () => {
-  //       // Use the dimensions of the loaded image for the Avatar component
-  //       const width = img.width;
-  //       const height = img.height;
-  //       setAvatarSize({ width, height });
-  //     };
-  //     img.image = image;
-  //   }
-  // }, [image]);
-
-  // const [bringDialog, setBringDialog] = useState(true);
-
-  // const initiateAvatar = () => {
-  //   setBringDialog(true);
-  // };
-
-  //___________________________dp change section ends_____________________________
-
-
-  //_______________________profile pic_____________
-
-  const [DP,setDP]=useState(false);
-  const [image,setImage]=useState(null);
-  const getDp=async ()=>{
-    const result = await fetch(user.dp);
-    const blob = await result.blob();
-    console.log(blob)
     setImage(URL.createObjectURL(blob));
     setDP(true);
-  }
-  useEffect(()=>{
-    if(!DP)
-      getDp()
-  })
+  };
 
-  //_______________________profile pic ends___________
+  useEffect(() => {
+    if (!DP) getDp();
+    if (reviews.length === 0) reviewHandler();
+    if (bookings.length === 0) bookingHandler();
+  });
+
+  //_______________________profile pic ends__________________
   return (
     <>
       <section>
@@ -221,54 +173,92 @@ function Profile() {
             <Col lg="10" className="m-auto">
               <div className="user__container">
                 <div className="user__img">
-               
-
-                  {/* {bringDialog && !image && (
-                    <Avatar onCrop={onCrop} onClose={onClose} />
-                  )}
-
-                  {bringDialog && image && (
-                    <Avatar onCrop={onCrop} onClose={onClose} src={src} />
-                  )}
-                  {!bringDialog && image && (
+                  {!image && (
                     <>
-                      <img
-                        src={image}
-                        alt=""
-                        // style={{
-                        //   width: avatarSize.width,
-                        //   height: avatarSize.height,
-                        // }}
-                      />
-                      <div className="updateDP" onClick={initiateAvatar}>
-                        <i class="ri-edit-box-line">{"  "}Update DP</i>
+                      <div className="DpLoading">
+                        <h5>
+                          <CircularProgress
+                            className="circle"
+                            color="inherit"
+                          />
+                          {"     "}
+                          Loading Dp...
+                        </h5>
                       </div>
                     </>
-                  )} */}
-                  {console.log(image)}
-                  {
-                    DP &&
-                    <img src={image} setPreview={image} alt="dp"/>
-                    
-                  }
-                  {
-                    !DP && 
-                    <Cropper/>
-                  }
-                  <div className="user__details">
-                    <p className="username">{user.username}</p>
-                    <div className="others">
-                      <p>
-                        <label className="tag">ID {"    "}:</label>
-
-                        {user._id}
-                      </p>
-                      <p>
-                        <label className="tag">Email{""}:</label>
-
-                        {user.email}
-                      </p>
+                  )}
+                  {DP && !showDialog && (
+                    <img
+                      src={image}
+                      onClick={() => {
+                        setShowDialog(true);
+                      }}
+                      alt="dp"
+                    />
+                  )}
+                  {showDialog && <Cropper />}
+                  {image && (
+                    <div className="username">
+                      <label className="static">I am </label>
+                      <ul className="dynamic">
+                        <li>
+                          <span>{user.username}</span>
+                        </li>
+                        <li>
+                          <span>Traveller</span>
+                        </li>
+                        <li>
+                          <span>Dreamer</span>
+                        </li>
+                      </ul>
                     </div>
+                  )}
+                </div>
+
+                <div className="user__details">
+                  <div className="Header">
+                    
+                    <p>{user.username}</p>
+                    <p className="bio">Philanthropist <i class="ri-earth-fill"></i> Nature lover</p>
+                  </div>
+                  
+                  <div className="others">
+                    <p>
+                      <label className="untag__red">
+                        Reservations{" "}
+                        <i class="ri-checkbox-blank-circle-fill"></i>
+                        {bookings.length}
+                      </label>
+                    </p>
+                    <p>
+                      <label className="untag__blue">
+                        Review Count{" "}
+                        <i class="ri-checkbox-blank-circle-fill"></i>
+                        {reviews.length}
+                      </label>
+                    </p>
+                    <p>
+                      <label className="tag">
+                        <i class="ri-mail-line"></i>
+                        {user.email}
+                      </label>
+                    </p>
+                    <p>
+                      <label className="tag">
+                        <i class="ri-phone-line"></i>01521771459
+                      </label>
+                    </p>
+                  </div>
+                  <div className="Footer">
+                   
+                      <div className="dateTitle">Registerd on</div>
+                      <div className="date">
+                      <b>{new Date(user.createdAt).toLocaleDateString(
+                        "en-US",
+                        options
+                      )}</b>
+                      </div>
+                   
                   </div>
                 </div>
 
@@ -277,7 +267,7 @@ function Profile() {
                     {/* <img src={userIcon} alt="" /> */}
                   </div>
 
-                  <h3>Here's your stuff</h3>
+                  {/* <h3>Here's your stuff</h3> */}
                   <div className="menu__items">
                     <div>
                       <i class="ri-history-line"></i>Trip history

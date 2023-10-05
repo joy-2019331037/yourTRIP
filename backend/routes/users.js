@@ -9,7 +9,7 @@ const router = express.Router();
 router.put('/:id',verifyUser,updateUser);
 router.put('/updateDP/:id',updateDP);
 router.delete('/:id',verifyUser,deleteUser);
-router.get('/:id',verifyUser,getSingleUser);
+router.get('/getSingleUser/:id',getSingleUser);
 router.get('/',verifyAdmin,getAllUsers);
 
 export default router;

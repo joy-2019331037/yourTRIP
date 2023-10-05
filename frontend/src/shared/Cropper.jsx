@@ -1,5 +1,5 @@
 import { Box, Modal, Slider, Button } from "@mui/material";
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import AvatarEditor from "react-avatar-editor";
 import { FcAddImage } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
@@ -30,16 +30,8 @@ const CropperModal = ({ src, modalOpen, setModalOpen, setPreview }) => {
 
   const { user } = useContext(AuthContext);
 
-  const [credentials, setCredentials] = useState({
-    dp: undefined,
-  });
-
-
   
 
-
-
-  let updatedValue = {};
   //handle save
   const handleSave = async () => {
     if (cropRef) {
@@ -47,33 +39,27 @@ const CropperModal = ({ src, modalOpen, setModalOpen, setPreview }) => {
       const result = await fetch(dataUrl);
       const blob = await result.blob();
       setPreview(URL.createObjectURL(blob));
-      //console.log(URL.createObjectURL(blob))
-      updatedValue = { dp: URL.createObjectURL(blob) };
-      setCredentials((prev) => ({
-        ...prev,
-        ...updatedValue,
-      }));
-      setModalOpen(false); 
-      
+      setModalOpen(false);
+
       try {
         const res = await fetch(`${BASE_URL}/users/updateDP/${user._id}`, {
           method: "put",
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify({dp:dataUrl}),
+          body: JSON.stringify({ dp: dataUrl }),
         });
         const reslt = await res.json();
         //console.log(reslt);
-        // if (!res.ok) {
-        //   alert(result.message);
-        // }
+        if (!res.ok) {
+          alert(reslt.message);
+        }
       } catch (error) {
         alert(error.message);
       }
     }
   };
- 
+
   return (
     <Modal sx={modalStyle} open={modalOpen}>
       <Box sx={boxStyle}>
@@ -157,6 +143,16 @@ const Cropper = () => {
     setModalOpen(true);
   };
 
+ 
+
+  useEffect(() => {
+    if (!src) {
+      
+     inputRef.current.click();
+     
+    }
+  },[src]);
+
   return (
     <>
       <main className="main">
@@ -166,21 +162,14 @@ const Cropper = () => {
           setPreview={setPreview}
           setModalOpen={setModalOpen}
         />
-        {console.log(preview)}
+        
 
         <div className="img-container">
-          <img
-            onClick={handleInputClick}
-            src={
-              preview ||
-              " https://www.signivis.com/img/custom/avatars/member-avatar-01.png"
-            }
-            alt=""
-          />
+          <img onClick={handleInputClick} src={preview} alt="" />
         </div>
-        <div className="chooseDp" onClick={handleInputClick}>
+        {/* <div className="chooseDp" onClick={handleInputClick}>
           <i class="ri-image-add-fill">{"       "}Choose DP</i>
-        </div>
+        </div> */}
 
         <input
           type="file"

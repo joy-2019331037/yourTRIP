@@ -50,7 +50,7 @@ export const updateUser = async (req, res) => {
 export const updateDP = async (req, res) => {
   try {
     const user_id = req.params.id;
-    console.log(user_id)
+    //console.log(req.body.dp)
     //console.log(req.body.dp)
     const { dp } = req.body;
     const updatedProfile = await User.findByIdAndUpdate(
@@ -96,9 +96,9 @@ export const deleteUser = async (req, res) => {
 export const getSingleUser = async (req, res) => {
   try {
     const id = req.params.id;
-
+    
     const singleUser = await User.findById(id);
-
+    // console.log(singleUser)
     res.status(200).json({
       success: true,
       message: "successfully fetched User info",

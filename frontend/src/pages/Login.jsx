@@ -42,7 +42,7 @@ const Login = () => {
         alert(result.message)
       }
 
-      // console.log(result.data)
+      console.log(result.data)
 
       dispatch({type:'LOGIN_SUCCESS',payload:result.data})
       navigate('/')
@@ -67,7 +67,7 @@ const Login = () => {
                 </div>
 
                 <h2>Login</h2>
-
+             
                 <Form onSubmit={handleClick}>
                   <FormGroup>
                     <input
