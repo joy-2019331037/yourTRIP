@@ -4,7 +4,7 @@ import { Container, Row, Button } from "reactstrap";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "./../../context/AuthContext";
-import logo from "../../assets/images/logo.png";
+import logo1 from "../../assets/images/logo1.png";
 import "./header.css";
 
 const nav_links = [
@@ -15,6 +15,10 @@ const nav_links = [
   {
     path: "/about",
     display: "About",
+  },
+  {
+    path: "/gallery",
+    display: "Gallery",
   },
   {
     path: "/tours",
@@ -58,10 +62,10 @@ const Header = () => {
     <header className="header" ref={headerRef}>
       <Container>
         <Row>
-          <div className="nav-wrapper d-flex align-items-center justify-content-between">
+          <div className="nav-wrapper d-flex align-items-center justify-content-around">
             {/* ______________ logo _______________ */}
             <div className="logo">
-              <img src={logo} alt="img" />
+              <Link to="/home"><img src={logo1} alt="img" /></Link>
             </div>
             {/* ______________ logo finish _______________ */}
 

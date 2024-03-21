@@ -1,14 +1,14 @@
 import React, { useState,useContext } from "react";
-import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import {AuthContext} from './../context/AuthContext'
 import {BASE_URL} from '../utils/config'
 
-import registerImg from "../assets/images/register.png";
-import userIcon from "../assets/images/user.png";
-import "../styles/login.css";
+import registerImg from '../assets/images/register.png'
+
+import "../styles/register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -53,22 +53,20 @@ const Register = () => {
     <section>
       <Container>
         <Row>
-          <Col lg="8" className="m-auto">
-            <div className="login__container d-flex justify-content-between">
-              <div className="login__img">
-                <img src={registerImg} alt="" />
+          <Col lg="8" >
+            <div className="login__container">
+              <div className="login">
+               <img src={registerImg} alt=""/>
               </div>
 
               <div className="login__form">
-                <div className="user">
-                  <img src={userIcon} alt="" />
-                </div>
+               
 
                 <h2>Sign Up</h2>
 
                 <Form onSubmit={handleClick}>
                   <FormGroup>
-                    <input
+                    <Input
                       type="text"
                       placeholder="Your name"
                       id="username"
@@ -78,7 +76,7 @@ const Register = () => {
                   </FormGroup>
 
                   <FormGroup>
-                    <input
+                    <Input
                       type="email"
                       placeholder="Email"
                       id="email"
@@ -88,7 +86,7 @@ const Register = () => {
                   </FormGroup>
 
                   <FormGroup>
-                    <input
+                    <Input
                       type="password"
                       placeholder="Password"
                       id="password"
@@ -107,7 +105,7 @@ const Register = () => {
                 </Form>
 
                 <p>
-                  Already have an account? <Link to="/login">Login</Link>
+                  Already a member? <Link to="/login">Login</Link>
                 </p>
               </div>
             </div>

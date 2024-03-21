@@ -1,0 +1,33 @@
+.testimonial{
+  gap:3rem;
+}
+
+.test_box{
+  display: flex;
+  justify-content: center;
+  background-color:aliceblue;
+}
+
+.text_box{
+  width: 80%;
+  margin: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  
+  border-radius: 12px;
+  font-size: small;
+
+  p{
+    padding:10px;
+    text-align: center;
+  }
+}
+.img_box img{
+  width: 4.8rem;
+  height:4.5rem;
+  border-radius: 50%;
+}
+
+

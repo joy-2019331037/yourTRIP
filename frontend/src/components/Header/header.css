@@ -1,14 +1,18 @@
 .header{
+    padding-top: 20px;
     width: 100%;
-    height: 80px;
-    line-height: 80px;
+
     /* position: sticky; */
+    padding-bottom: 100px;
 }
 
 .logo img{
-    width: 50%;
+    width: 60%;
 }
 
+.nav__right{
+    margin-left: 7rem;
+}
 .menu{
     margin-bottom: 0;
 }

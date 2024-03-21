@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import logo from "../../assets/images/logo.png";
+import logo1 from "../../assets/images/logo1.png";
 import "./footer.css";
 
 const quick_links = [
@@ -44,7 +44,7 @@ const Footer = () => {
         <Row>
           <Col lg="3">
             <div className="logo">
-              <img src={logo} alt="" />
+              <img src={logo1} alt="" />
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde
                 commodi debitis voluptates illum, id ratione quia vitae suscipit
@@ -117,7 +117,7 @@ const Footer = () => {
                   </span>
                   Email:
                 </h6>
-                <p className="mb-0">goZayaan_Office@gmail.com</p>
+                <p className="mb-0">yourTRIP_Office@gmail.com</p>
               </ListGroupItem>
 
               <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
@@ -134,7 +134,7 @@ const Footer = () => {
 
           <Col lg="12" className="text-center pt-5">
             <div className="copyright">
-              Copyright {year}, © GoZayaan. All rights reserved.
+              Copyright {year}, © yourTRIP. All rights reserved.
               {/* <br/>
               designed and developed by GoZayaan */}
             </div>

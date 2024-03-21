@@ -17,6 +17,7 @@ const MasonryImagesGallery = () => {
           />
         ))}
       </Masonry>
+      
     </ResponsiveMasonry>
   );
 };

@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Button, Input } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-
 import { AuthContext } from "./../context/AuthContext";
 import { BASE_URL } from "../utils/config";
 
-import loginImg from "../assets/images/login.png";
-import userIcon from "../assets/images/user.png";
+
+import icon from '../assets/images/logo1.png';
+
 import "../styles/login.css";
 
 const Login = () => {
@@ -25,29 +25,29 @@ const Login = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-
+    console.log("haha")
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await fetch(`${BASE_URL}/auth/login`,{
-        method:'post',
-        headers:{
-          'content-type':'application/json'
+      const res = await fetch(`${BASE_URL}/auth/login`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
         },
-        credentials:'include',
-        body:JSON.stringify(credentials)
-      })
-      const result = await res.json()
+        credentials: "include",
+        body: JSON.stringify(credentials),
+      });
+      const result = await res.json();
 
-      if(!res.ok){
-        alert(result.message)
+      if (!res.ok) {
+        alert(result.message);
       }
 
-      console.log(result.data)
+      console.log(result.data);
 
-      dispatch({type:'LOGIN_SUCCESS',payload:result.data})
-      navigate('/')
+      dispatch({ type: "LOGIN_SUCCESS", payload: result.data });
+      navigate("/");
     } catch (error) {
-      dispatch({tyoe:'LOGIN_FAILURE', payload:error.message})
+      dispatch({ type: "LOGIN_FAILURE", payload: error.message });
     }
   };
 
@@ -55,22 +55,21 @@ const Login = () => {
     <section>
       <Container>
         <Row>
-          <Col lg="8" className="m-auto">
-            <div className="login__container d-flex justify-content-between">
-              <div className="login__img">
-                <img src={loginImg} alt="" />
-              </div>
-
+          <Col lg="4" className="m-auto">
+            <div className="login__container d-flex justify-content-center">
+            
               <div className="login__form">
-                <div className="user">
-                  <img src={userIcon} alt="" />
+                <div>
+                  <img src={icon}/>
                 </div>
-
-                <h2>Login</h2>
-             
+                <div className="text">
+                <h3>Delighted to have you back!</h3>
+                </div>
+               
+               
                 <Form onSubmit={handleClick}>
                   <FormGroup>
-                    <input
+                    <Input
                       type="email"
                       placeholder="Email"
                       id="email"
@@ -80,7 +79,7 @@ const Login = () => {
                   </FormGroup>
 
                   <FormGroup>
-                    <input
+                    <Input
                       type="password"
                       placeholder="Password"
                       id="password"
@@ -97,9 +96,8 @@ const Login = () => {
                     Login
                   </Button>
                 </Form>
-
                 <p>
-                  Don't have an account? <Link to="/register">Create here</Link>
+                  Not a member? <Link to="/register">Register here</Link>
                 </p>
               </div>
             </div>

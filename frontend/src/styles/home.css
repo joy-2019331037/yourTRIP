@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--primary-color);
+  background: var(--tertiary-color);
   color: #fff;
   font-size: 1.6rem;
   font-weight: 600;

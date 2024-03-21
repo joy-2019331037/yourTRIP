@@ -10,8 +10,9 @@ import ReviewDialog from "../shared/Dialog";
 import BookingDialog from "../shared/bookingDialog";
 
 import Cropper from "../shared/Cropper";
-
 import CircularProgress from "@mui/material/CircularProgress";
+
+import defaultImage from '../assets/images/defaultuser.jpg'
 
 function Profile() {
   const { user } = useContext(AuthContext);
@@ -173,6 +174,8 @@ function Profile() {
             <Col lg="10" className="m-auto">
               <div className="user__container">
                 <div className="user__img">
+                  {/* default image */}
+                  <img  src={defaultImage}/>
                   {!image && (
                     <>
                       <div className="DpLoading">
@@ -197,6 +200,7 @@ function Profile() {
                     />
                   )}
                   {showDialog && <Cropper />}
+                 
                   {image && (
                     <div className="username">
                       <label className="static">I am </label>

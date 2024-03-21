@@ -9,12 +9,15 @@ import TourDetails from '../pages/TourDetails'
 import SearchResultList from '../pages/SearchResultList'
 import ThankYou from '../pages/ThankYou'
 import Profile from '../pages/Profile'
-
+import About from '../pages/About'
+import Gallery from '../pages/Gallery'
 const Routers = () => {
   return (
     <Routes>
         <Route path='/' element={<Navigate to='/home'/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/gallery' element={<Gallery/>}/>
+        <Route path='/about' element={<About/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/thank-you' element={<ThankYou/>}/>
         <Route path='/login' element={<Login/>}/>
