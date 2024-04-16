@@ -46,8 +46,9 @@ const Footer = () => {
             <div className="logo">
               <img src={logo1} alt="" />
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde
-                commodi debitis voluptates illum, id ratione quia vitae suscipit
+              Embark on a journey of discovery with our travel platform. Whether you crave the tranquility of nature or the bustle of city life, 
+                <span className="highlight"> <b> yourTRIP </b> </span>  
+                is your gateway to unforgettable adventures. Explore captivating destinations and let the world unfold before you, one click at a time.
               </p>
 
               <div className="social__links d-flex align-items-center gap-4">

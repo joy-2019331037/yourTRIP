@@ -16,6 +16,7 @@ export const register = async (req, res) => {
       photo: req.body.photo,
     });
 
+    console.log(req.body.email);
     await newUser.save();
 
     res.status(200).json({
@@ -23,6 +24,7 @@ export const register = async (req, res) => {
       message: "User successfully registered",
     });
   } catch (error) {
+   
     res.status(500).json({
       success: false,
       message: "User registration failed",

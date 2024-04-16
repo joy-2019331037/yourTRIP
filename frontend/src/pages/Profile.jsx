@@ -176,7 +176,7 @@ function Profile() {
                 <div className="user__img">
                   {/* default image */}
                   <img  src={defaultImage}/>
-                  {!image && (
+                  {/* {!image && (
                     <>
                       <div className="DpLoading">
                         <h5>
@@ -189,8 +189,8 @@ function Profile() {
                         </h5>
                       </div>
                     </>
-                  )}
-                  {DP && !showDialog && (
+                  )} */}
+                  {/* {DP && !showDialog && (
                     <img
                       src={image}
                       onClick={() => {
@@ -198,8 +198,8 @@ function Profile() {
                       }}
                       alt="dp"
                     />
-                  )}
-                  {showDialog && <Cropper />}
+                  )} */}
+                  {/* {showDialog && <Cropper />} */}
                  
                   {image && (
                     <div className="username">
@@ -238,6 +238,7 @@ function Profile() {
                       <label className="untag__blue">
                         Review Count{" "}
                         <i class="ri-checkbox-blank-circle-fill"></i>
+                      
                         {reviews.length}
                       </label>
                     </p>

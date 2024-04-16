@@ -275,10 +275,9 @@ const Testimonials = () => {
         <div className="test_box">
           <div className="text_box">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae
-              molestiae, odio officia iure, doloribus esse dicta et quam
-              consectetur repudiandae maiores facilis laborum. Doloribus debitis
-              necessitatibus culpa atque, temporibus quaerat.
+            Absolutely incredible! yourTRIP made my dream vacation a reality. 
+            From seamless booking to unforgettable experiences, every moment was magical. 
+            Can't wait for my next adventure!
             </p>{" "}
           </div>
         </div>
@@ -295,10 +294,9 @@ const Testimonials = () => {
         <div className="test_box">
           <div className="text_box">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae
-              molestiae, odio officia iure, doloribus esse dicta et quam
-              consectetur repudiandae maiores facilis laborum. Doloribus debitis
-              necessitatibus culpa atque, temporibus quaerat.
+            Exceeded all expectations! 
+            As a frequent traveler, I'm blown away by yourTRIP's attention to detail and personalized service. 
+            They truly go above and beyond to create unforgettable memories.
             </p>
           </div>
         </div>
@@ -315,10 +313,10 @@ const Testimonials = () => {
         <div className="test_box">
           <div className="text_box">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae
-              molestiae, odio officia iure, doloribus esse dicta et quam
-              consectetur repudiandae maiores facilis laborum. Doloribus debitis
-              necessitatibus culpa atque, temporibus quaerat.
+            Highly recommend yourTRIP! 
+            Their expert guidance and local insights transformed my
+             vacation into a once-in-a-lifetime adventure. Trustworthy, 
+             reliable, and always exceeding expectations!
             </p>{" "}
           </div>
         </div>
@@ -335,10 +333,9 @@ const Testimonials = () => {
         <div className="test_box">
           <div className="text_box">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae
-              molestiae, odio officia iure, doloribus esse dicta et quam
-              consectetur repudiandae maiores facilis laborum. Doloribus debitis
-              necessitatibus culpa atque, temporibus quaerat.
+            Incredible experiences, seamless booking, and unparalleled customer service!
+             yourTRIP has become my go-to for all my travel 
+            needs. Can't thank them enough for the memories created!
             </p>
           </div>
         </div>
@@ -355,10 +352,9 @@ const Testimonials = () => {
         <div className="test_box">
           <div className="text_box">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae
-              molestiae, odio officia iure, doloribus esse dicta et quam
-              consectetur repudiandae maiores facilis laborum. Doloribus debitis
-              necessitatibus culpa atque, temporibus quaerat.
+            An adventure like no other! yourTRIP took care of every detail,
+             allowing me to immerse myself fully in the beauty of each destination. 
+            Exceptional service from start to finish!
             </p>
           </div>
         </div>

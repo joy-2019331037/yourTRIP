@@ -1,11 +1,19 @@
 import React, { useState, useContext } from "react";
-import { Container, Row, Col, Form, FormGroup, Button, Input } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Button,
+  Input,
+} from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./../context/AuthContext";
 import { BASE_URL } from "../utils/config";
+import Swal from "sweetalert2";
 
-
-import icon from '../assets/images/logo1.png';
+import icon from "../assets/images/logo1.png";
 
 import "../styles/login.css";
 
@@ -25,7 +33,7 @@ const Login = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log("haha")
+    let s = "ok";
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -39,15 +47,23 @@ const Login = () => {
       const result = await res.json();
 
       if (!res.ok) {
-        alert(result.message);
+        //alert(result.message);
+        s = result.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: s,
+        });
       }
 
       console.log(result.data);
 
       dispatch({ type: "LOGIN_SUCCESS", payload: result.data });
-      navigate("/");
+      if (s == "ok") navigate("/");
+      else navigate("/login");
     } catch (error) {
       dispatch({ type: "LOGIN_FAILURE", payload: error.message });
+      navigate("/login");
     }
   };
 
@@ -57,16 +73,15 @@ const Login = () => {
         <Row>
           <Col lg="4" className="m-auto">
             <div className="login__container d-flex justify-content-center">
-            
               <div className="login__form">
                 <div>
-                  <img src={icon}/>
+                  <img src={icon} alt="" />
                 </div>
+
                 <div className="text">
-                <h3>Delighted to have you back!</h3>
+                  <h3>Delighted to have you back!</h3>
                 </div>
-               
-               
+
                 <Form onSubmit={handleClick}>
                   <FormGroup>
                     <Input

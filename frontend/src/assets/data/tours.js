@@ -23,7 +23,7 @@ const tours = [
       },
     ],
     avgRating: 4.5,
-    photo: tourImg01,
+    // photo: tourImg01,
     featured: true,
   },
   {

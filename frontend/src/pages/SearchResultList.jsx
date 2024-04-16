@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import TourCard from "../shared/TourCard";
 import CommonSection from "../shared/CommonSection";
-import Newsletter from '../shared/Newsletter'
+import Newsletter from "../shared/Newsletter";
 
 const SearchResultList = () => {
   const location = useLocation();
@@ -14,7 +14,10 @@ const SearchResultList = () => {
   //console.log(data);
   return (
     <>
-      <CommonSection title={"Search Result"} />
+      {/* <CommonSection title={"Search Result"} /> */}
+      <center>
+        <h2>Search Result</h2>
+      </center>
       <section>
         <Container>
           <Row>
@@ -29,7 +32,7 @@ const SearchResultList = () => {
             )}
           </Row>
         </Container>
-        <Newsletter/>
+       
       </section>
     </>
   );

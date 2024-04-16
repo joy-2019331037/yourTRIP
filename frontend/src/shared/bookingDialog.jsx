@@ -73,7 +73,7 @@ export default function FullScreenDialog({ bookings }) {
         </AppBar>
 
         {Array.isArray(bookings) ? (
-          bookings.map((booking, index) => (
+          bookings?.map((booking, index) => (
             <div className="booking__item" key={index}>
               <div className="photoDiv">
                 <img src={booking.tourPhoto} alt="" />
@@ -108,7 +108,7 @@ export default function FullScreenDialog({ bookings }) {
 
                 <p className="mail">
                   <i class="ri-phone-line"></i>
-                  <label id="mailText">{booking.phone}</label>
+                  <label id="mailText">0{booking.phone}</label>
                 </p>
 
                 <p></p>

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
+import { Form, FormGroup, ListGroup, ListGroupItem, Button ,Input} from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
@@ -34,7 +34,11 @@ const Booking = ({ tour, avgRating }) => {
     console.log(booking);
     try {
       if (!user || user === undefined || user === null) {
-        return alert("Please sign in to book any tour");
+        // return alert("Please sign in to book any tour");
+        return Swal.fire({
+          icon: "error",
+          text: "Please sign in to book any tour",
+        });
       }
 
       const res = await fetch(`${BASE_URL}/booking`, {
@@ -52,21 +56,21 @@ const Booking = ({ tour, avgRating }) => {
         return alert(result.message);
       }
 
-      Swal.fire({
+      await Swal.fire({
         position: "center",
         icon: "success",
         title: "Your tour is booked",
+        footer:"Please check your profile to view your reservations",
         showConfirmButton: false,
-        timer: 1500,
       });
 
-      navigate("/home");
+      navigate("/profile");
     } catch (error) {
       alert(error.message);
     }
   };
 
-  const serviceFee = 10;
+  const serviceFee = 100;
   const totalAmount =
     Number(price) * Number(booking.guestSize) + Number(serviceFee);
 
@@ -78,7 +82,7 @@ const Booking = ({ tour, avgRating }) => {
     <div className="booking">
       <div className="booking__top d-flex align-items-center justify-content-between">
         <h3>
-          $ {price} <span>/per person</span>
+        ৳ {price} <span>/per person</span>
         </h3>
 
         <span className="tour__rating d-flex align-items-center">
@@ -93,7 +97,7 @@ const Booking = ({ tour, avgRating }) => {
 
         <Form className="booking__info-form" onSubmit={handleClick}>
           <FormGroup>
-            <input
+            <Input
               type="text"
               placeholder="Full Name"
               id="fullName"
@@ -102,7 +106,7 @@ const Booking = ({ tour, avgRating }) => {
             />
           </FormGroup>
           <FormGroup>
-            <input
+            <Input
               type="text"
               placeholder="Phone"
               id="phone"
@@ -111,7 +115,7 @@ const Booking = ({ tour, avgRating }) => {
             />
           </FormGroup>
           <FormGroup className="d-flex align-items-center gap-3">
-            <input
+            <Input
               type="date"
               placeholder=""
               id="bookAt"
@@ -119,7 +123,7 @@ const Booking = ({ tour, avgRating }) => {
               onChange={handleChange}
               required
             />
-            <input
+            <Input
               type="number"
               placeholder="Guest"
               id="guestSize"
@@ -137,17 +141,17 @@ const Booking = ({ tour, avgRating }) => {
         <ListGroup>
           <ListGroupItem className="border-0 px-0">
             <h5 className="d-flex align-items-center gap-1">
-              ${price} <i class="ri-close-line"></i> 1 person
+              ৳ {price} <i class="ri-close-line"></i> 1 person
             </h5>
-            <span>${price}</span>
+            <span>৳ {price}</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0">
             <h5>Service Charge</h5>
-            <span>$ 10</span>
+            <span>৳  100</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0 total">
             <h5>Total</h5>
-            <span>${totalAmount}</span>
+            <span>৳ {totalAmount}</span>
           </ListGroupItem>
         </ListGroup>
 

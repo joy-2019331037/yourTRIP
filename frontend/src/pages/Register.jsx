@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import {AuthContext} from './../context/AuthContext'
 import {BASE_URL} from '../utils/config'
-
+import Swal from 'sweetalert2';
 import registerImg from '../assets/images/register.png'
 
 import "../styles/register.css";
@@ -23,6 +23,7 @@ const Register = () => {
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    // console.log(credentials);
   };
 
   const handleClick = async e => {
@@ -39,9 +40,22 @@ const Register = () => {
       const result = await res.json()
 
       if(!res.ok){
-        alert(result.message)
+        //alert(result.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          
+        });
       }
-
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        text: "Congratulations!",
+        title: "You have been registered",
+        showConfirmButton: false,
+        timer: 1500
+      });
       dispatch({type:'REGISTER_SUCCESS'})
       navigate('/login')
     } catch (error) {
@@ -54,12 +68,12 @@ const Register = () => {
       <Container>
         <Row>
           <Col lg="8" >
-            <div className="login__container">
-              <div className="login">
+            <div className="reg__container">
+              <div className="reg">
                <img src={registerImg} alt=""/>
               </div>
 
-              <div className="login__form">
+              <div className="reg__form">
                
 
                 <h2>Sign Up</h2>
@@ -105,7 +119,7 @@ const Register = () => {
                 </Form>
 
                 <p>
-                  Already a member? <Link to="/login">Login</Link>
+                  Already a member? <Link to="/login">Login Here</Link>
                 </p>
               </div>
             </div>

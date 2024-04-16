@@ -1,8 +1,21 @@
 import Booking from '../models/Booking.js'
 
 export const createBooking=async (req,res)=>{
-    const newBooking = new Booking(req.body)
+    const newBooking = new Booking(req.body);
+    const userId = req.body.userId;
+    const date = req.body.bookAt;
+    console.log(req.body.userId);
+    console.log(req.body.userEmail);
+    console.log(req.body.bookAt);
     try {
+        // const duplicateBooking = await Booking.findOne({userId, date});
+        // if(duplicateBooking){
+        //     res.status(500).json({
+        //         success:false,
+        //         message:"Same day booking already exits",
+        //     })
+        //     return ;
+        // }
         const savedBooking = await newBooking.save()
         
         res.status(200).json({

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 
-import { Container, Row, Col, Form, ListGroup } from "reactstrap";
+import { Container, Row, Col, Form, ListGroup, Input} from "reactstrap";
 import { useParams } from "react-router-dom";
 import Newsletter from "../shared/Newsletter";
 import CalculateAvgRating from "../utils/calculateAvgRating";
@@ -9,35 +9,34 @@ import Booking from "../components/Booking/Booking";
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 import { AuthContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 import avatar from "../assets/images/avatar.jpg";
 import "../styles/tourdetails.css";
 
-const TourDetails =() => {
+const TourDetails = () => {
   const [starColor, setStarColor] = useState(false);
   const [starColorLimit, setStarColorLimit] = useState(0);
-  const [changedOnce, setChangedOnce]=useState(false);
+  const [changedOnce, setChangedOnce] = useState(false);
 
   const starColorHandler = (no) => {
     setTourRating(no);
-    if(!changedOnce){
-      setChangedOnce(true)
-      setStarColor(!starColor)
-    } 
-    else{
-      setStarColor(true)
+    if (!changedOnce) {
+      setChangedOnce(true);
+      setStarColor(!starColor);
+    } else {
+      setStarColor(true);
     }
     setStarColorLimit(no);
   };
 
-  
   // console.log('star Color : '+starColor);
   // console.log('star Color Limit : '+starColorLimit)
   // console.log('changed Once : '+changedOnce)
   const { id } = useParams();
 
   const reviewMsgRef = useRef("");
-  const [tourRating, setTourRating] = useState(null);
+  const [tourRating, setTourRating] = useState(1);
   const { user } = useContext(AuthContext);
 
   //fetch data from db
@@ -61,21 +60,40 @@ const TourDetails =() => {
   //format date
   const options = { day: "numeric", month: "long", year: "numeric" };
 
+
+  const [review, setReview] = useState({
+    text:''
+   });
+ 
+   const handleChange = (e) => {
+     const { value } = e.target; // Destructure value from the event object
+     setReview((prev) => ({ ...prev, text: value }));
+     console.log(value); // Use value directly
+   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    
+    //const reviewText = reviewMsgRef.current.value;
 
-    const reviewText = reviewMsgRef.current.value;
+    console.log(tourRating);
+    console.log(review.text);
+     const reviewText = review.text;
 
     try {
       if (!user || user === undefined || user === null) {
-        alert("Please sign in to provide a review");
+        // alert("Please sign in to provide a review");
+        Swal.fire({
+          icon: "error",
+          text: "Please sign in to rate any tour",
+        });
       }
 
       const reviewObj = {
         username: user?.username,
-        userId:user?._id,
-        tourPhoto:photo,
-        tourName:title,
+        userId: user?._id,
+        tourPhoto: photo,
+        tourName: title,
         reviewText,
         rating: tourRating,
       };
@@ -92,16 +110,24 @@ const TourDetails =() => {
       const result = await res.json();
 
       if (!res.ok) {
-        return alert(result.message);
+        // return alert(result.message);
+        return ;
       }
 
-      
-    console.log(reviewObj)
-      alert(result.message);
+      //console.log(reviewObj);
+      //alert(result.message);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        text: "Congratulations!",
+        title: "You review is submitted",
+        footer:"Stay with yourTRIP",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (error) {
       alert("coming form here" + error.message);
     }
-
   };
 
   useEffect(() => {
@@ -149,7 +175,7 @@ const TourDetails =() => {
                       {city}
                     </span>
                     <span>
-                      <i class="ri-money-dollar-circle-line"></i>${price} /per
+                      <i class="ri-money-dollar-circle-line"></i>৳ {price} /per
                       person
                     </span>
                     <span>
@@ -170,7 +196,32 @@ const TourDetails =() => {
                 <div className="tour__reviews mt-4">
                   <h4>Reviews ({reviews?.length})</h4>
 
-                  <ListGroup className="user__reviews ">
+                  {reviews?.map((review) => (
+                    <div className="user_review">
+                      <div className="review_info">
+                        <div className="reviewer">
+                          <img src={avatar} alt="img" />
+                          <div>
+                            <h6>{review.username}</h6>
+                            <p className="review_date">
+                              {new Date(review.createdAt).toLocaleDateString(
+                                "en-US",
+                                options
+                              )}
+                            </p>
+                          </div>
+                        </div>
+
+                        <h6>"{review.reviewText}"</h6>
+                      </div>
+
+                      <div className="review_rating">
+                        {review.rating} <i class="ri-star-fill"></i>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* <ListGroup className="user__reviews ">
                     {reviews?.map((review) => (
                       <div className="review__item">
                         <img src={avatar} alt="img" />
@@ -197,7 +248,7 @@ const TourDetails =() => {
                         </div>
                       </div>
                     ))}
-                  </ListGroup>
+                  </ListGroup> */}
 
                   <h5>Rate this tour</h5>
 
@@ -207,7 +258,9 @@ const TourDetails =() => {
                         1{" "}
                         <i
                           class={`ri-star-fill ${
-                            starColor === true && 1<=starColorLimit? "changed" : "unchanged"
+                            starColor === true && 1 <= starColorLimit
+                              ? "changed"
+                              : "unchanged"
                           }`}
                         ></i>
                       </span>
@@ -215,7 +268,9 @@ const TourDetails =() => {
                         2
                         <i
                           class={`ri-star-fill ${
-                            starColor === true && 2<=starColorLimit? "changed" : "unchanged"
+                            starColor === true && 2 <= starColorLimit
+                              ? "changed"
+                              : "unchanged"
                           }`}
                         ></i>
                       </span>
@@ -223,7 +278,9 @@ const TourDetails =() => {
                         3
                         <i
                           class={`ri-star-fill ${
-                            starColor === true && 3<=starColorLimit? "changed" : ""
+                            starColor === true && 3 <= starColorLimit
+                              ? "changed"
+                              : ""
                           }`}
                         ></i>
                       </span>
@@ -231,7 +288,9 @@ const TourDetails =() => {
                         4
                         <i
                           class={`ri-star-fill ${
-                            starColor === true && 4<=starColorLimit? "changed" : "unchanged"
+                            starColor === true && 4 <= starColorLimit
+                              ? "changed"
+                              : "unchanged"
                           }`}
                         ></i>
                       </span>
@@ -239,16 +298,18 @@ const TourDetails =() => {
                         5
                         <i
                           class={`ri-star-fill ${
-                            starColor === true && 5<=starColorLimit? "changed" : "unchanged"
+                            starColor === true && 5 <= starColorLimit
+                              ? "changed"
+                              : "unchanged"
                           }`}
                         ></i>
                       </span>
                     </div>
 
                     <div className="review__input">
-                      <input
+                      <Input
                         type="text"
-                        ref={reviewMsgRef}
+                        onChange={handleChange}
                         placeholder="Share your thoughts"
                         required
                       />
@@ -272,7 +333,6 @@ const TourDetails =() => {
           </Row>
         )}
       </Container>
-      <Newsletter />
     </>
   );
 };

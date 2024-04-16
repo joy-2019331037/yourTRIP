@@ -2,8 +2,8 @@
     padding: 0.5rem 1rem;
     border-radius: 50px;
     box-shadow: rgba(24, 17, 59, 0.15) 0px 48px 100px 0px;
-    width: max-content;
-    margin-top: 50px;
+    width: 20rem;
+    height: 4.5rem;
     border: 0.5px solid teal;
     /* background-color: rgb(246, 246, 235) */
 }
@@ -14,12 +14,15 @@
     color:rgb(236, 112, 112);
 }
 
-.form__group input{
+.form__group Input{
     border: none;
     font-size: 0.9rem;
     color: var(--heading-color);
 }
 
+.form__group .unique{
+    border-radius: 1px solid black;
+}
 
 .form__group input:focus{
     outline: none;

@@ -34,13 +34,12 @@ const Home = () => {
                 </div>
                 <h1>
                   Explore places, create{" "}
-                  <span className="highlight">moments!!!</span>
+                  <span className="highlight">moment!!!</span>
                 </h1>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt
-                  architecto facilis neque consequuntur qui asperiores incidunt
-                  culpa animi. Animi maxime aut incidunt obcaecati iste modi
-                  totam sequi officia esse enim?
+                Embark on a journey of discovery with our travel platform. Whether you crave the tranquility of nature or the bustle of city life, 
+                <span className="highlight"> <b> yourTRIP </b> </span>  
+                is your gateway to unforgettable adventures. Explore captivating destinations and let the world unfold before you, one click at a time.
                 </p>
               </div>
             </Col>
@@ -95,11 +94,8 @@ const Home = () => {
                 </h2>
 
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Minima molestiae inventore velit fugiat cumque, impedit porro
-                  consectetur iure maiores dignissimos blanditiis doloremque sit
-                  assumenda itaque dicta accusantium natus! Consequuntur,
-                  pariatur.
+                With over 12K+ successful trips, 2K+ regular clients, and 9 years of expertise, 
+                our experience speaks volumes. Join us for unforgettable journeys crafted with passion and precision. Your adventure awaits!
                 </p>
               </div>
             </Col>

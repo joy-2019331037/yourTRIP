@@ -58,7 +58,7 @@ export default function FullScreenDialog({ reviews }) {
             maxWidth: "90%",
           },
         }}
-        sx={{    
+        sx={{
           width: "80%",
           alignItems: "center",
           margin: "0 auto", // Center horizontally
@@ -82,27 +82,29 @@ export default function FullScreenDialog({ reviews }) {
         </AppBar>
 
         {Array.isArray(reviews) ? (
-          reviews.map((review, index) => (
+          reviews?.map((review, index) => (
             <div className="parent">
               <div className="review__item" key={index}>
-             
-             <div className="photoDiv">
-               <img src={review.tourPhoto} alt="" />
-             </div>
-             <div>
-               <p className="tourName">
-                 <b> {review.tourName}</b>
-               </p>
-              
-               <p className="tourRating">
-               <label><b>{review.rating}</b></label>
-                 {renderStars(review.rating)}
-               </p>
-               
-               <label className="reviewText">
-                 {"\t"}"{review.reviewText}"{"    "}</label>
-             </div>
-           </div>
+                <div className="photoDiv">
+                  <img src={review.tourPhoto} alt="" />
+                </div>
+                <div>
+                  <p className="tourName">
+                    <b> {review.tourName}</b>
+                  </p>
+
+                  <p className="tourRating">
+                    <label>
+                      <b>{review.rating}</b>
+                    </label>
+                    {renderStars(review.rating)}
+                  </p>
+
+                  <label className="reviewText">
+                    {"\t"}"{review.reviewText}"{"    "}
+                  </label>
+                </div>
+              </div>
             </div>
           ))
         ) : (

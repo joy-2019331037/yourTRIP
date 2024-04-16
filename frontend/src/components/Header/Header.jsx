@@ -12,10 +12,7 @@ const nav_links = [
     path: "/home",
     display: "Home",
   },
-  {
-    path: "/about",
-    display: "About",
-  },
+  
   {
     path: "/gallery",
     display: "Gallery",
@@ -23,6 +20,10 @@ const nav_links = [
   {
     path: "/tours",
     display: "Tours",
+  },
+  {
+    path: "/about",
+    display: "About",
   },
 ];
 
@@ -34,7 +35,7 @@ const Header = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    navigate("/");
+    navigate("/login");
   };
 
   const stickyHeaderFunc = () => {

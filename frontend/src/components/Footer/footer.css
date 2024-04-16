@@ -10,6 +10,7 @@
 
 .footer .logo p{
     color: var(--text-color);
+    font-size: small;
 }
 
 .social__links span a{

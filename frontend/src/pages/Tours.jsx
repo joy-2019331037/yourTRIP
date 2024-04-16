@@ -33,13 +33,15 @@ const Tours = () => {
 
   return (
     <>
-      <CommonSection title={"All Tours"} />
+      {/* <CommonSection title={"All Tours"} /> */}
       <section>
+        <center>
         <Container>
           <Row>
             <SearchBar />
           </Row>
         </Container>
+        </center>
       </section>
       <section className="pt-0">
         <Container>
@@ -53,6 +55,7 @@ const Tours = () => {
               {tours?.map((tour) => (
                 <Col lg="3" md="6" sm="6" className="mb-4" key={tour._id}>
                   {" "}
+                  
                   <TourCard tour={tour} />
                 </Col>
               ))}
@@ -76,7 +79,7 @@ const Tours = () => {
           )}
         </Container>
       </section>
-      <Newsletter />
+    
     </>
   );
 };
