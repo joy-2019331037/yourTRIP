@@ -25,29 +25,3 @@ To explore our app smoothly, please log in using the following credentials:
 ## Feedback and Reviews
 
 We welcome any feedback or reviews on how we can enhance the quality of our website. Your input is greatly appreciated.
-=======
-
-## Running the Website Locally
-
-To run the website on localhost:
-
-1. **Frontend Connection:**
-   - Navigate to the frontend folder from the terminal.
-   - Run the command: `npm run start`
-
-2. **Backend Connection:**
-   - Navigate to the backend folder from the terminal.
-   - Run the command: `nodemon index.js`
-
-## Explore our App
-
-To explore our app smoothly, please log in using the following credentials:
-
-- **Email:** niloy@gmail.com
-- **Password:** 123
-
-## Feedback and Reviews
-
-We welcome any feedback or reviews on how we can enhance the quality of our website. Your input is greatly appreciated.
-
->>>>>>> a382bbd2e5829648bc7fb4ca6af8be7725e80a89
