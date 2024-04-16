@@ -1,15 +1,27 @@
-# yourTRIP
+# CSE 350 Project - yourTRIP
 
+yourTRIP is a travel website designed to provide users with captivating features to enhance their tourism experience. Our goal was to create a platform where users can easily book available tours and share feedback on their experiences. With a simple UI design and a focused set of features showcased on the website, yourTRIP serves as an academic project that meets our expectations.
 
-yourTRIP is a travel website that provides eye-catching features for facilitating tourism. We aimed at developing a website that offers users an opportunity to book available tours and provide feedback on several tours. With a simple UI design and a limited set of features demonstrated on the website, yourTRIP as an academic project meets our expectations.
+## Running the Website Locally
 
----
+To run the website on localhost:
 
-### To explore our app smoothly, please log in using the following credentials:
+1. **Frontend Connection:**
+   - Navigate to the frontend folder from the terminal.
+   - Run the command: `npm run start`
 
-**Email:** niloy@gmail.com  
-**Password:** 123
+2. **Backend Connection:**
+   - Navigate to the backend folder from the terminal.
+   - Run the command: `nodemon index.js`
 
----
+## Explore our App
 
-Any feedback or review on enhancing our website quality is cordially welcomed.
+To explore our app smoothly, please log in using the following credentials:
+
+- **Email:** niloy@gmail.com
+- **Password:** 123
+
+## Feedback and Reviews
+
+We welcome any feedback or reviews on how we can enhance the quality of our website. Your input is greatly appreciated.
+
