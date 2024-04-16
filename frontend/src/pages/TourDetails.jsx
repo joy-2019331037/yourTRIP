@@ -123,7 +123,7 @@ const TourDetails = () => {
         title: "You review is submitted",
         footer:"Stay with yourTRIP",
         showConfirmButton: false,
-        timer: 1500
+       
       });
     } catch (error) {
       alert("coming form here" + error.message);
