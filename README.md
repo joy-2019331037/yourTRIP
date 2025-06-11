@@ -1,27 +1,98 @@
-# CSE 350 Project - yourTRIP
+# yourTRIP - Travel Management System
 
-yourTRIP is a travel website designed to provide users with captivating features to enhance their tourism experience. Our goal is to create a platform where users can easily book available tours and share feedback on their experiences. With a simple UI design and a fixed set of features showcased on the website, yourTRIP serves as an academic project that meets our expectations.
+yourTRIP is a travel management platform built for users with an enhanced tourism experience. The platform allows users to book tours, manage their travel plans, and share their experiences through reviews and feedback.
 
 
-## Running the Website Locally
+##  Features
 
-To run the website on localhost:
+- User authentication and authorization
+- Tour booking system
+- Review and feedback system
 
-1. **Frontend Connection:**
-   - Navigate to the frontend folder from the terminal.
-   - Run the command: `npm run start`
+##  Tech Stack
 
-2. **Backend Connection:**
-   - Navigate to the backend folder from the terminal.
-   - Run the command: `nodemon index.js`
+### Frontend
+- React.js
+- Custom UI components 
 
-## Explore our App
+### Backend
+- Express.js
+- MongoDB
+- Node.js
+- RESTful API architecture
 
-To explore our app smoothly, please log in using the following credentials:
+##  Project Structure
+
+```
+├── frontend/               # React frontend application
+│   ├── public/            
+│   └── src/              
+│
+├── backend/               # Express.js backend application
+│   ├── controllers/     
+│   ├── models/          
+│   ├── routes/          
+│   └── utils/           
+```
+
+##  Installation and Setup
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
+
+### Backend Setup
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure MongoDB connection in the environment variables
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+### Frontend Setup
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+##  Demo Credentials
+
+To explore the application, you can use the following credentials:
 
 - **Email:** niloy@gmail.com
 - **Password:** 123
 
-## Feedback and Reviews
 
-We welcome any feedback or reviews on how we can enhance the quality of our website. Your input is greatly appreciated.
+
+
+##  API Testing
+
+All backend APIs have been thoroughly tested using Postman to ensure functionality, reliability, and performance. You can explore the full collection of RESTful APIs using the following link:
+
+🔗 [yourTRIP API Postman Collection](https://www.postman.com/sourav-joy/api-workspace-for-joy/collection/z74obcs/yourtrip?action=share&creator=28240594) <!-- Replace with your actual link -->
+
+The collection includes:
+- User authentication routes  
+- Tour management routes  
+- Booking endpoints  
+- Review and feedback routes  
+
+
+This comprehensive testing helps ensure that the platform works as expected and supports future development and debugging efficiently.
