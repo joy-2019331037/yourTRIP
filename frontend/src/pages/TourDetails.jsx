@@ -88,7 +88,7 @@ const TourDetails = () => {
           text: "Please sign in to rate any tour",
         });
       }
-
+          
       const reviewObj = {
         username: user?.username,
         userId: user?._id,
